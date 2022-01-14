@@ -9,3 +9,4 @@
 6. Apenas 1 "ponto" por linha
 7. NUNCA abrevie
 8. Matenhas as classes e pacotes pequenos
+9. Tenha no máximo duas propriedades por classe

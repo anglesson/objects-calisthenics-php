@@ -2,6 +2,8 @@
 
 namespace Alura\Calisthenics\Tests\Unit\Domain\Student;
 
+use Alura\Calisthenics\Domain\Student\Endereco;
+use Alura\Calisthenics\Domain\Student\FullName;
 use Alura\Calisthenics\Domain\Student\Student;
 use Alura\Calisthenics\Domain\Video\Video;
 use PHPUnit\Framework\TestCase;
@@ -15,14 +17,14 @@ class StudentTest extends TestCase
         $this->student = new Student(
             'email@example.com',
             new \DateTimeImmutable('1997-10-15'),
-            'Vinicius',
-            'Dias',
-            'Rua de Exemplo',
-            '71B',
-            'Meu Bairro',
-            'Minha Cidade',
-            'Meu estado',
-            'Brasil'
+            new FullName('Anglesson', 'Araujo'),
+            new Endereco(
+                'Rua de Exemplo',
+                '71B',
+                'Meu Bairro',
+                'Minha Cidade',
+                'Meu estado',
+                'Brasil')
         );
     }
 

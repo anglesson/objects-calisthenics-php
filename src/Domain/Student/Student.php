@@ -5,39 +5,53 @@ namespace Alura\Calisthenics\Domain\Student;
 use Alura\Calisthenics\Domain\Video\Video;
 use DateTimeInterface;
 use Ds\Map;
+use PhpParser\Node\Stmt\TraitUseAdaptation\Precedence;
+use PHPUnit\Framework\ExecutionOrderDependency;
 
 class Student
 {
     private string $email;
     private DateTimeInterface $birthDate;
-    private Map $watchedVideos;
-    private string $fullName;
-    private string $lastName;
-    public string $street;
-    public string $number;
-    public string $province;
-    public string $city;
-    public string $state;
-    public string $country;
+    private WatchedVideos $watchedVideos;
+    private FullName $fullName;
+    private Endereco $endereco;
 
-    public function __construct(string $email, DateTimeInterface $birthDate, string $fullName, string $lastName, string $street, string $number, string $province, string $city, string $state, string $country)
+    public function __construct(string $email, DateTimeInterface $birthDate, FullName $fullName, Endereco $endereco)
     {
-        $this->watchedVideos = new Map();
-        $this->setEmail($email);
+        $this->email = $email;
         $this->birthDate = $birthDate;
+        $this->watchedVideos = new WatchedVideos();
         $this->fullName = $fullName;
-        $this->lastName = $lastName;
-        $this->street = $street;
-        $this->number = $number;
-        $this->province = $province;
-        $this->city = $city;
-        $this->state = $state;
-        $this->country = $country;
+        $this->endereco = $endereco;
     }
 
     public function fullName(): string
     {
-        return "{$this->fullName} {$this->lastName}";
+        return $this->fullName;
+    }
+
+    /**
+     * @param WatchedVideos $watchedVideos
+     */
+    public function setWatchedVideos(WatchedVideos $watchedVideos): void
+    {
+        $this->watchedVideos = $watchedVideos;
+    }
+
+    /**
+     * @param DateTimeInterface $birthDate
+     */
+    public function setBirthDate(DateTimeInterface $birthDate): void
+    {
+        $this->birthDate = $birthDate;
+    }
+
+    /**
+     * @param FullName $fullName
+     */
+    public function setFullName(FullName $fullName): void
+    {
+        $this->fullName = $fullName;
     }
 
     private function setEmail(string $email)
@@ -84,5 +98,13 @@ class Student
         $dateInterval = $this->birthDate->diff($today);
 
         return $dateInterval->y;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullName(): string
+    {
+        return $this->fullName;
     }
 }
