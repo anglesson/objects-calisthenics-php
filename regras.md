@@ -10,3 +10,6 @@
 7. NUNCA abrevie
 8. Matenhas as classes e pacotes pequenos
 9. Tenha no máximo duas propriedades por classe
+
+Object Calisthenics are programming exercises, formalized as a set of 9 rules invented
+by Jeff Bay in his book The ThoughtWorks Anthology.

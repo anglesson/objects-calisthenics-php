@@ -2,7 +2,7 @@
 
 namespace Alura\Calisthenics\Tests\Unit\Domain\Student;
 
-use Alura\Calisthenics\Domain\Student\Endereco;
+use Alura\Calisthenics\Domain\Email\Email;
 use Alura\Calisthenics\Domain\Student\FullName;
 use Alura\Calisthenics\Domain\Student\Student;
 use Alura\Calisthenics\Domain\Video\Video;
@@ -15,17 +15,21 @@ class StudentTest extends TestCase
     protected function setUp(): void
     {
         $this->student = new Student(
-            'email@example.com',
+            new Email('email@example.com'),
             new \DateTimeImmutable('1997-10-15'),
-            new FullName('Anglesson', 'Araujo'),
-            new Endereco(
-                'Rua de Exemplo',
-                '71B',
-                'Meu Bairro',
-                'Minha Cidade',
-                'Meu estado',
-                'Brasil')
+            new FullName('Vinicius', 'Dias'),
+            'Rua de Exemplo',
+            '71B',
+            'Meu Bairro',
+            'Minha Cidade',
+            'Meu estado',
+            'Brasil'
         );
+    }
+
+    public function testFullNameMustBeRepresentedAsString()
+    {
+        self::assertEquals('Vinicius Dias', $this->student->fullName());
     }
 
     public function testStudentWithoutWatchedVideosHasAccess()

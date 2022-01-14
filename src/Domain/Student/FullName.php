@@ -2,11 +2,10 @@
 
 namespace Alura\Calisthenics\Domain\Student;
 
-
 class FullName
 {
-    private string $lastName;
     private string $firstName;
+    private string $lastName;
 
     public function __construct(string $firstName, string $lastName)
     {
@@ -14,7 +13,7 @@ class FullName
         $this->lastName = $lastName;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return "{$this->firstName} {$this->lastName}";
     }
